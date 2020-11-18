@@ -6,6 +6,8 @@
 #include <GL/freeglut.h>
 #include <cmath>
 
+static int spaceTexture;
+
 // Variáveis MARTE
 static float anguloMarte = 10;                 // Rotação da esfera em torno do eixo y
 static int marteLados = 200;                   // Quantas subdivisões latitudinais/longitudinais da esfera
@@ -19,7 +21,7 @@ static int venusTexture;
 static bool usarVenus = true;
 
 // Variáveis TERRA
-static float anguloTerra = 10;                 // Rotação da esfera em torno do eixo y
+static float anguloTerra = 100;                 // Rotação da esfera em torno do eixo y
 static int terraLados = 200;                   // Quantas subdivisões latitudinais/longitudinais da esfera
 static int terraTexture;
 static bool usarTerra = true;
@@ -108,19 +110,22 @@ void aneis(float anguloRotacao, float anguloInclinacao, int posicao, GLdouble de
     gluDeleteQuadric(disk);
 }
 
-
-
 void geraMundos(){
-
-    
-    
     glEnable(GL_TEXTURE_2D);
+
+//skybox de raio 300 a partir do sol
+    glBindTexture(GL_TEXTURE_2D, spaceTexture);
+    glPushMatrix();
+        glTranslatef(xCursor, yCursor, zCursor); 
+        solidSphere(300.0, solLados, solLados);
+    glPopMatrix();
+//fim da skybox
+
     glBindTexture(GL_TEXTURE_2D, solTexture);
-    
     glPushMatrix();
         glRotatef(anguloSol, 0, 1, 0);
         glRotatef(90, 1, 0, 0);
-        solidSphere(10.0, solLados, solLados);
+        solidSphere(10.0 - distancia, solLados, solLados);
     glPopMatrix();
 
     glBindTexture(GL_TEXTURE_2D, mercurioTexture);   
@@ -141,9 +146,10 @@ void geraMundos(){
     
     glBindTexture(GL_TEXTURE_2D, terraTexture);   
     glPushMatrix();
-        glRotatef(anguloTerra, 0, -1, 0); // gira para o outro lado
-        glRotatef(90, 1, 0, 0);
-        glTranslatef(0, -40, 0); 
+
+        glRotatef(anguloTerra*20, 0, -1, 0); // gira ao redor do sol
+        glRotatef(90, 1, 0, 0); // posicao planeta, jeito que ele fica, inclinado, em pé
+        glTranslatef(40, 0, 0);
         solidSphere(5.0, terraLados, terraLados);
     glPopMatrix();
 
