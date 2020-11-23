@@ -22,9 +22,11 @@ void teclado(unsigned char key, int x, int y) {
             break;
         case 's':   //andar pelo plano X-Z utilizando W A S D
             xCursor++;
+            distancia -= 0.9f;
             break;
         case 'w':
             xCursor--;
+            distancia += .9f;
             break;
         case 'a':
             zCursor++;
@@ -96,6 +98,21 @@ void redimensiona(int w, int h){
     gluPerspective(60.0, (float)w/(float)h, 0.2, 400.0);    //funciona como se fosse o glOrtho, mas para o espaço 3D
     glMatrixMode(GL_MODELVIEW);                             //ativa o modo de matriz de visualização para utilizar o LookAt
 }
+
+
+void rotaciona() {
+    rodaMarte += 3.1f;
+   // anguloSol += .1f;
+    rodaJupiter += 3.1f;
+    rodaMercurio += 1.0f;
+    rodaVenus += 5.0f;
+    rodaTerra += 3.0f;
+    rodaUrano += 3.1f;
+    rodaPlutao += 3.1f;
+    rodaSaturno += 3.1f;
+    rodaNetuno += 3.1f;
+    glutPostRedisplay();
+}
 void rotacionaEsfera() {
     anguloMarte += .1f;
     anguloSol += .1f;
@@ -107,9 +124,9 @@ void rotacionaEsfera() {
     anguloPlutao += .1f;
     anguloSaturno += .1f;
     anguloNetuno += .1f;
+    rotaciona();
     glutPostRedisplay();
 }
-
 void inicializa(){
     glClearColor(0,0,0, 0.0);                          //cor de fundo branca
     glEnable(GL_BLEND);                                //ativa a mesclagem de cores
@@ -128,7 +145,7 @@ void inicializa(){
     plutaoTexture = carregaTextura("imagens/plutao.jpg");
     netunoTexture = carregaTextura("imagens/netuno.jpg");
     saturnoTexture = carregaTextura("imagens/saturno.jpg");
-    
+    spaceTexture = carregaTextura("imagens/space.jpg");
 
     // Propriedades do material da esfera
     float matAmbAndDif[] = {1.0, 1.0, 1.0, 1.0};    // cor ambiente e difusa: branca
@@ -166,6 +183,7 @@ void desenhaCena() {
     solidSphere(1, 100, 20);
     */
     geraMundos();
+    geraOrbita();
     glutSwapBuffers();
 }
 
@@ -180,7 +198,7 @@ int main(int argc, char *argv[]) {
     glutInitWindowPosition (0, 0);
 
     glutCreateWindow("Sistema Solar");
-    glutEnterGameMode();                 // fullscreen baby! 
+    // glutEnterGameMode();                 // fullscreen baby! 
     // glutSetCursor(GLUT_CURSOR_NONE);     // esconde o cursor do sistema
 
     glutDisplayFunc(desenhaCena);
@@ -191,6 +209,8 @@ int main(int argc, char *argv[]) {
     glutKeyboardFunc(teclado);
     // usada para capturar o posicionamento do mouse
     glutPassiveMotionFunc(posicionaCamera);
+    
+//    glutIdleFunc(rotaciona);
     glutIdleFunc(rotacionaEsfera);
     inicializa();
     glutMainLoop();
