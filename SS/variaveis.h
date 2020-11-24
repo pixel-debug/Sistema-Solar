@@ -7,9 +7,9 @@
 #include <cmath>
 
 using namespace std;
-
+int xCursor, yCursor, zCursor;  //guarda o centro do cursor
 // Variáveis das luzes
-
+static int distancia = 0;
 static bool light0Ligada = 1;   // Luz branca ligada?
 static bool light1Ligada = 1;   // Luz verde ligada?
 static float d = 1.0;           // Intensidade da cor difusa da luz branca
