@@ -1,4 +1,4 @@
-
+#include "planetas.h"
 
 void luzes(){
     // Propriedades das fontes de luz
@@ -36,16 +36,7 @@ void luzes(){
         glColor3f(d, d, d);
         if (light0Ligada)
         {
-                glLineWidth(3.0);
-                glBegin(GL_LINES);
-                glVertex3f(0.0, 0.0, 0.25);
-                glVertex3f(0.0, 0.0, -0.25);
-                glVertex3f(0.0, 0.0, -0.25);
-                glVertex3f(0.05, 0.0, -0.2);
-                glVertex3f(0.0, 0.0, -0.25);
-                glVertex3f(-0.05, 0.0, -0.2);
-                glEnd();
-                glLineWidth(1.0);
+                sol();
             
         }
     glPopMatrix();
