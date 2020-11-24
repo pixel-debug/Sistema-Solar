@@ -20,7 +20,7 @@ Lista de itens presentes no jogo
 
 2- Câmera - 3 : Estática (3), Móvel Lateral (Default) e Móvel Superior (2)
 
-3- Gráficos - a luz emana do Sol ao apertar a tecla 'l' ou 'L' (Porém a estrela está apagada)
+3- Gráficos - a luz emana do Sol ao apertar a tecla 'l' ou 'L' 
 
 4- Skybox 
 
