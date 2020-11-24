@@ -24,7 +24,14 @@ Lista de itens presentes no jogo
 
 4- Skybox 
 
-5- Anéis planetários - Saturno 
+5- Anéis planetários - Saturno e Urano
 
 6- Reshape 
 
+7- Orbitas visíveis - apertar tecla 
+
+8- Música
+
+9- Atmosfera Terrestre 
+
+10- Fidedignidade
