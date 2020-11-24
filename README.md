@@ -10,6 +10,14 @@ Trabalho de Computação Gráfica
 *****************************************************
 Compilação do programa:
 
+1- Compilação sem MakeFile 
+    g++ sistema.cpp -lGL -lglut -lGLEW -lGLU -lSOIL -lm -lSDL -lSDL_mixer
+    ./a.out
+
+1- Compilação com MakeFile 
+    g++ sistema.cpp -o sistema -lGL -lglut -lGLEW -lGLU -lSOIL -lm -lSDL -lSDL_mixer
+    make
+
 
 
 
@@ -21,6 +29,7 @@ Lista de itens presentes no jogo
 2- Câmera - '3' : Estática (3), Móvel Lateral (Default) e Móvel Superior (2)
 
 3- Gráficos - a luz emana do Sol ao apertar a tecla 'l' ou 'L' 
+    3.1- Se apertar a tecla 'o' ou 'O' o sol sai e a luz se perde
 
 4- Skybox 
 
@@ -28,10 +37,13 @@ Lista de itens presentes no jogo
 
 6- Reshape 
 
-7- Orbitas visíveis - apertar tecla 
+7- Orbitas visíveis - apertar tecla 'v'
 
 8- Música
+    8.1- Pausa com a tecla 'p'
 
 9- Atmosfera Terrestre 
 
-10- Fidedignidade
+10- Fidedignidade - apertando a tecla 'T'
+
+11- Escrita na tela em ambas as cameras

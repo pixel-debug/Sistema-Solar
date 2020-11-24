@@ -129,9 +129,7 @@ void geraOrbita(){
    aneis(0,90,0,2970,2970.5); //URANO
    aneis(0,90,0,4604,4604.5); //NETUNO
    aneis(0,90,0,6022,6022.5); //PLUTÃO
-
-
-   
+ 
 }
 
 void sol(){
@@ -161,35 +159,38 @@ void geraMundos(){
     glPopMatrix();
 //fim da skybox
 
-
+    //Mercurio
     glBindTexture(GL_TEXTURE_2D, mercurioTexture);   
     glPushMatrix();
         glRotatef(anguloMercurio, 0, 1, 0);
         glTranslatef(158, 0.0, 0); //posiciona em outro ponto
         glRotatef(rodaMercurio, 0, 1, 0);
         glRotatef(97, 1, 0, 0); 
-        solidSphere(0.5, mercurioLados, mercurioLados);
+        solidSphere(0.5*tamanhoVisivel, mercurioLados, mercurioLados);
     glPopMatrix();
 
+    //Venus
     glBindTexture(GL_TEXTURE_2D, venusTexture);   
     glPushMatrix();
         glRotatef(anguloVenus, 0, 1, 0);
         glTranslatef(208, 0.0, 0); //posiciona em outro ponto
         glRotatef(rodaVenus, 0, 1, 0);
         glRotatef(-267, 1, 0, 0);        
-        solidSphere(0.95- distancia, venusLados, venusLados);
+        solidSphere(0.95*tamanhoVisivel, venusLados, venusLados);
     glPopMatrix();
     
+    //Terra
     glBindTexture(GL_TEXTURE_2D, terraTexture);   
     glPushMatrix();
-        glRotatef(anguloTerra, 0, -1, 0); // gira ao redor do sol
+        glRotatef(anguloTerra, 0, 1, 0); // gira ao redor do sol
         glTranslatef(250, 0, 0);
         glRotatef(rodaTerra, 0, 1, 0);       // gira ao redor dela mesmo
         glRotatef(133.5, 1, 0, 0);              // angulação do eixo
-        solidSphere(1.0- distancia, terraLados, terraLados);
+        solidSphere(1.0*tamanhoVisivel, terraLados, terraLados);
         
     glPopMatrix();
 
+    //Marte
     glBindTexture(GL_TEXTURE_2D, marsTexture);   
     glPushMatrix();
         glRotatef(anguloMarte, 0, 1, 0);
@@ -197,60 +198,63 @@ void geraMundos(){
         glTranslatef(330, 0.0, 0); //posiciona em outro ponto
         glRotatef(rodaMarte, 0, 1, 0);
         glRotatef(115, 1, 0, 0); 
-        solidSphere(0.53, marteLados, marteLados);
+        solidSphere(0.53*tamanhoVisivel, marteLados, marteLados);
     glPopMatrix();
     
-    
+    //Jupiter
     glBindTexture(GL_TEXTURE_2D, jupiterTexture);   
     glPushMatrix();
         glRotatef(anguloJupiter, 0, -1, 0); // gira para o outro lado
         glTranslatef(878, 0, 0); 
         glRotatef(rodaJupiter, 0, 1, 0);
         glRotatef(93, 1, 0, 0); 
-        solidSphere(11.2, jupiterLados, jupiterLados);
+        solidSphere(11.2*tamanhoVisivel, jupiterLados, jupiterLados);
     glPopMatrix();
 
 
-
+    //Saturno
     glBindTexture(GL_TEXTURE_2D, saturnoTexture);  
     glPushMatrix();
-        aneis(anguloSaturno,55,1529,8.0,10.0);
-        aneis(anguloSaturno,55,1529,10.5,12.0);
+        aneis(anguloSaturno,55,1529,10.0*tamanhoVisivel,12.0*tamanhoVisivel);
+        aneis(anguloSaturno,55,1529,12.5*tamanhoVisivel,14.0*tamanhoVisivel);
         glRotatef(anguloSaturno, 0, -1, 0); // gira para o outro lado
         glTranslatef(1529, 0, 0); 
         glRotatef(rodaSaturno, 0, 1, 0);
         glRotatef(117, 1, 0, 0); 
-        solidSphere(9.45, saturnoLados, saturnoLados);
+        solidSphere(9.45*tamanhoVisivel, saturnoLados, saturnoLados);
     glPopMatrix();
 
+    //Uranio
     glBindTexture(GL_TEXTURE_2D, uranoTexture);   
     glPushMatrix();
-        aneis(anguloUrano,45,2970,7.4,7.6);
-        aneis(anguloUrano,45,2970,7.7,7.8);
-        aneis(anguloUrano,45,2970,8.0,8.5);
+        aneis(anguloUrano,45,2970,7.4*tamanhoVisivel,7.6*tamanhoVisivel);
+        aneis(anguloUrano,45,2970,7.7*tamanhoVisivel,7.8*tamanhoVisivel);
+        aneis(anguloUrano,45,2970,8.0*tamanhoVisivel,8.5*tamanhoVisivel);
         glRotatef(anguloUrano, 0, -1, 0); // gira para o outro lado
         glTranslatef(2970, 0, 0); 
         glRotatef(rodaUrano, 0, 1, 0);
         glRotatef(-188, 1, 0, 0); 
-        solidSphere(4.1, uranoLados, uranoLados);
+        solidSphere(4.1*tamanhoVisivel, uranoLados, uranoLados);
     glPopMatrix();
 
+    //Netuno
     glBindTexture(GL_TEXTURE_2D, netunoTexture);   
     glPushMatrix();
         glRotatef(anguloNetuno, 0, -1, 0); // gira para o outro lado
         glTranslatef(4604, 0, 0); 
         glRotatef(rodaNetuno, 0, 1, 0);
         glRotatef(120, 1, 0, 0); 
-        solidSphere(3.88, netunoLados, netunoLados);
+        solidSphere(3.88*tamanhoVisivel, netunoLados, netunoLados);
     glPopMatrix();
 
+    //Plutão é um planeta?
     glBindTexture(GL_TEXTURE_2D, plutaoTexture);   
     glPushMatrix();
         glRotatef(anguloPlutao, 0, -1, 0); // gira para o outro lado
         glTranslatef(6022, 0, 0); 
         glRotatef(rodaPlutao, 0, 1, 0);
         glRotatef(212, 1, 0, 0); 
-        solidSphere(1.0, plutaoLados, plutaoLados);
+        solidSphere(1.0*tamanhoVisivel, plutaoLados, plutaoLados);
     glPopMatrix();
 
     

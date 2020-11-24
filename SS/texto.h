@@ -18,52 +18,38 @@ void informacoesTela(void)
     glDisable(GL_LIGHTING); // Desabilita iluminação
     glColor3f(.85f, .85f, .85f);
 
-    glRasterPos3f(-1.0, 1.10, -2.0);
+    glRasterPos3f(100, 110, -2.0);
     escreveTextoNaTela((void*)font, (char*)"Iluminacao (l): ");
     escreveTextoNaTela((void*)font, (char*)(isLightingOn ? "ligada" : "desligada"));
 
-    floatParaString(theStringBuffer, 4, m);
-    glRasterPos3f(-1.0, 1.00, -2.0);
-    escreveTextoNaTela((void*)font, (char*)"Luz ambiente global: ");
-    glRasterPos3f(-1.0, 0.95, -2.0);
-    escreveTextoNaTela((void*)font, (char*)"  - Intensidade (m/M): ");
-    escreveTextoNaTela((void*)font, theStringBuffer);
+    glRasterPos3f(100, 120, -2.0);
+    escreveTextoNaTela((void*)font, (char*)"Musica (p): ");
+    escreveTextoNaTela((void*)font, (char*)(pause ? "desligada" : "ligada"));
 
-    glRasterPos3f(-1.0, 0.85, -2.0);
-    escreveTextoNaTela((void*)font, (char*)"Luz branca: ");
-    glRasterPos3f(-1.0, 0.80, -2.0);
-    escreveTextoNaTela((void*)font, (char*)"  - Intensidade difusa (d/D): ");
-    floatParaString(theStringBuffer, 4, d);
-    escreveTextoNaTela((void*)font, theStringBuffer);
-    glRasterPos3f(-1.0, 0.75, -2.0);
-    escreveTextoNaTela((void*)font, (char*)"  - Intensidade especular (e/E): ");
-    floatParaString(theStringBuffer, 4, e);
-    escreveTextoNaTela((void*)font, theStringBuffer);
+    glRasterPos3f(100, 130, -2.0);
+    escreveTextoNaTela((void*)font, (char*)"Tamanho proporcional (t): ");
+    escreveTextoNaTela((void*)font, (char*)(tamanhoVisivel2 ? "x10" : "x1"));
 
+    glRasterPos3f(100, 140, -2.0);
+    escreveTextoNaTela((void*)font, (char*)"Orbita visivel(v): ");
+    escreveTextoNaTela((void*)font, (char*)(orbita ? "Sim" : "Nao"));
 
-    glRasterPos3f(-1.0, 0.65, -2.0);
-    escreveTextoNaTela((void*)font, (char*)"Material: ");
-    glRasterPos3f(-1.0, 0.60, -2.0);
-    escreveTextoNaTela((void*)font, (char*)"  - Expoente especular (s/S): ");
-    floatParaString(theStringBuffer, 5, s);
-    escreveTextoNaTela((void*)font, theStringBuffer);
+    glRasterPos3f(100, 150, -2.0);
+    escreveTextoNaTela((void*)font, (char*)"Fim da vida como conhecemos? (o): ");
+    escreveTextoNaTela((void*)font, (char*)(light0Ligada ? "Nao" : "Sim"));
 
-}
+    glRasterPos3f(100, 100, -2.0);
+    escreveTextoNaTela((void*)font, (char*)"Camera: 1-Camera movel / 2- Camera interna / 3-Camera estatica");
 
 
-// Imprime a ajuda no console
-void imprimirAjudaConsole(void)
-{
-    cout << "Ajuda:" << endl;
-    cout << "  Aperte 'l' para ligar/desligar a iluminacao do OpenGL." << endl
-         << "  Aperte 'w' para ligar/desligar a fonte de luz branca." << endl
-         << "  Aperte 'g' para ligar/desligar a fonte de luz verde." << endl
-         << "  Aperte 'd/D' para aumentar/reduzir a intensidade difusa da luz branca." << endl
-         << "  Aperte 'e/E' para aumentar/reduzir a intensidade especular da luz branca." << endl
-         << "  Aperte 'm/M' para aumentar/reduzir a intensidade da luz ambiente global." << endl
-         << "  Aperte 's/S' para aumentar/reduzir o expoente especular do material." << endl
-         << "  Aperte 'p' para alternar entre fonte posicional ou direcional." << endl
-         << "  Aperte 't' para alternar entre modo com/sem textura." << endl
-         << "  Aperte '+/-' para aumentar/diminuir a redondeza da esfera." << endl
-         << "  Aperte as setas para rotacionar a fonte de luz branca" << endl;
+    glColor3f(.01f, .01f, .01f);
+
+    glRasterPos3f(1, 0.65, -2);
+    escreveTextoNaTela((void*)font, (char*)"Pressione 'w'");
+    glRasterPos3f(1, 0.60, -2);
+    escreveTextoNaTela((void*)font, (char*)"'a' 's' ou 'd'");
+    glRasterPos3f(1, 0.55, -2);
+    escreveTextoNaTela((void*)font, (char*)"para sair do Sol");
+     
+
 }

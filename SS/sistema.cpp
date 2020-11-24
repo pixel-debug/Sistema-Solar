@@ -6,14 +6,29 @@
 #include <time.h>
 #include <stdlib.h>
 #include <string.h>
+#include <SDL/SDL.h>
+#include <SDL/SDL_mixer.h>
 
 #include "variaveis.h"
 #include "texto.h"
 #include "luz.h"
 #include "camera.h"
 
+void tocaMusica(){
+    if(!Mix_PlayingMusic()){
+        Mix_PlayMusic(music,-1);
+        Mix_VolumeMusic(72);
+        //printf("volume is now : %d\n", Mix_VolumeMusic(-1)); //Verificar o volume
+    }
 
+}
 
+void pausaMusica(int pause){
+    if(pause==1)
+        Mix_PauseMusic();
+    else
+        Mix_ResumeMusic();
+}
 
 void teclado(unsigned char key, int x, int y) {
     switch (key) {
@@ -22,11 +37,9 @@ void teclado(unsigned char key, int x, int y) {
             break;
         case 's':   //andar pelo plano X-Z utilizando W A S D
             xCursor++;
-            distancia -= 0.9f;
             break;
         case 'w':
             xCursor--;
-            distancia += .9f;
             break;
         case 'a':
             zCursor++;
@@ -42,6 +55,7 @@ void teclado(unsigned char key, int x, int y) {
             break;
         case '3':
             modoCAM = ESTATICA;
+        break;
         case 'o':
         case 'O':
             if (light0Ligada) light0Ligada = false;
@@ -51,6 +65,32 @@ void teclado(unsigned char key, int x, int y) {
         case 'L':
             isLightingOn = !isLightingOn;
         break;
+        case 't':
+        case 'T':
+        if(tamanhoVisivel==1){
+            tamanhoVisivel =10;
+            tamanhoVisivel2 = true;
+        }
+        else{
+            tamanhoVisivel=1;
+            tamanhoVisivel2 = false;
+        }
+;
+        break;
+        case 'v':
+        case 'V':
+            orbita=!orbita;
+        break;
+        case 'p':
+        case 'P':
+            if(pause==1){
+                pause=0;
+                pausaMusica(pause);
+            } 
+            else{
+                pause=1;
+                pausaMusica(pause);
+            }
         default:
             break;
     }
@@ -146,6 +186,12 @@ void inicializa(){
     saturnoTexture = carregaTextura("imagens/saturno.jpg");
     spaceTexture = carregaTextura("imagens/space.jpg");
 
+    Mix_OpenAudio(44100,MIX_DEFAULT_FORMAT,2,4096);
+    music=Mix_LoadMUS("music.mp3");
+    if(!music) {
+        printf("Mix_LoadMUS(\"music.mp3\"): %s\n", Mix_GetError());
+    }
+
     // Propriedades do material da esfera
     float matAmbAndDif[] = {1.0, 1.0, 1.0, 1.0};    // cor ambiente e difusa: branca
     float matSpec[] = { 1.0, 1.0, 1,0, 1.0 };       // cor especular: branca
@@ -163,16 +209,17 @@ void inicializa(){
     //glCullFace(GL_BACK);
 }
 
+
 //função que desenhará tudo o que aparece na tela
 void desenhaCena() {
-   
-   // informacoesTela();
+
+    
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     
     glLoadIdentity();
-    
     posicaoCamera();
+    informacoesTela();
 
  // Define (atualiza) o valor do expoente de especularidade
     matShine[0] = s;
@@ -185,13 +232,21 @@ void desenhaCena() {
     solidSphere(1, 100, 20);
     */
     geraMundos();
-    geraOrbita();
-   
+    if(orbita){
+        geraOrbita();
+    }
+    tocaMusica();
+
+    
     glutSwapBuffers();
 }
 
 
+
+
 int main(int argc, char *argv[]) {
+    SDL_Init (SDL_INIT_AUDIO);
+    Mix_Init(MIX_INIT_MP3);
     glutInit(&argc, argv);
     glutInitContextVersion(1, 1);
     glutInitContextProfile(GLUT_COMPATIBILITY_PROFILE);
@@ -216,7 +271,9 @@ int main(int argc, char *argv[]) {
 //    glutIdleFunc(rotaciona);
     glutIdleFunc(transladaEsfera);
     inicializa();
-    glutMainLoop();
 
+
+    glutMainLoop();
+    SDL_Quit();
     return 0;
 }
