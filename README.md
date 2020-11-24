@@ -16,9 +16,9 @@ Compilação do programa:
 *****************************************************
 Lista de itens presentes no jogo
 
-1- Mundo - 9 planetas e Sol criados a partir de texturas e sólidos esféricos
+1- Mundo - '9' planetas e Sol criados a partir de texturas e sólidos esféricos
 
-2- Câmera - 3 : Estática (3), Móvel Lateral (Default) e Móvel Superior (2)
+2- Câmera - '3' : Estática (3), Móvel Lateral (Default) e Móvel Superior (2)
 
 3- Gráficos - a luz emana do Sol ao apertar a tecla 'l' ou 'L' 
 
