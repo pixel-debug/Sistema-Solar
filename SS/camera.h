@@ -2,7 +2,7 @@ enum CAMERAS { TERCEIRA_PESSOA = 1, PRIMEIRA_PESSOA, ESTATICA };
 int modoCAM = TERCEIRA_PESSOA;            //variável responsável por guardar o modo de câmera que está sendo utilizado
 
 int xMouse = 0, yMouse = 0;     //variáveis globais que serão usadas na função posicionaCamera
-int xCursor, yCursor, zCursor;  //guarda o centro do cursor
+
 float phi = 90, teta = 0;       //ângulos das coordenadas esféricas
 
 
@@ -36,9 +36,9 @@ void posicionaCamera(int x, int y){
 }
 void posicaoCamera(){
   //esfera de raio 100
-    camera.x = 100 * sin(phi) * cos(teta);  //coordenada x denotada em coordenadas esféricas
-    camera.z = 100 * sin(phi) * sin(teta); //coordenada z denotada em coordenadas esféricas
-    camera.y = 100 * cos(phi);          //coordenada y denotada em coordenadas esféricas
+    camera.x = 400 * sin(phi) * cos(teta);  //coordenada x denotada em coordenadas esféricas
+    camera.z = 400 * sin(phi) * sin(teta); //coordenada z denotada em coordenadas esféricas
+    camera.y = 400 * cos(phi);          //coordenada y denotada em coordenadas esféricas
 
     switch (modoCAM) {
     case TERCEIRA_PESSOA:
@@ -55,7 +55,7 @@ void posicaoCamera(){
 
     case ESTATICA:
     default:
-        gluLookAt(0, 0, 200,   // Z=200
+        gluLookAt(0, 0, 800,   // Z=400
                   0, 0, 0,    // (0, 0, 0) origem do mundo
                   0, 1, 0);  //nesse exemplo mais simples, estamos no ponto Z=200 olhando para o ponto 0
         break;
