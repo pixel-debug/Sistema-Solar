@@ -9,9 +9,9 @@
 
 #include "variaveis.h"
 #include "texto.h"
-#include "planetas.h"
-#include "camera.h"
 #include "luz.h"
+#include "camera.h"
+
 
 
 
@@ -95,36 +95,35 @@ void redimensiona(int w, int h){
     glViewport (0, 0, w, h);                //define a proporção da janela de visualização
     glMatrixMode (GL_PROJECTION);           //define o tipo de matriz de transformação que será utilizada
     glLoadIdentity();                       //carrega a matriz identidade do tipo GL_PROJECTION configurado anteriormente
-    gluPerspective(60.0, (float)w/(float)h, 0.2, 400.0);    //funciona como se fosse o glOrtho, mas para o espaço 3D
+    gluPerspective(60.0, (float)w/(float)h, 0.2, 2147483647.0);    //funciona como se fosse o glOrtho, mas para o espaço 3D
     glMatrixMode(GL_MODELVIEW);                             //ativa o modo de matriz de visualização para utilizar o LookAt
 }
 
 
-void rotaciona() {
-    rodaMarte += 3.1f;
-   // anguloSol += .1f;
-    rodaJupiter += 3.1f;
-    rodaMercurio += 1.0f;
-    rodaVenus += 5.0f;
-    rodaTerra += 3.0f;
-    rodaUrano += 3.1f;
+void rotacionaEsfera() {
+    rodaMarte += 2.3f;
+    anguloSol += .1f;
+    rodaJupiter += 5.7f;
+    rodaMercurio += 0.04f;
+    rodaVenus += 0.01f;
+    rodaTerra += 2.4f;
+    rodaUrano += 3.4f;
     rodaPlutao += 3.1f;
-    rodaSaturno += 3.1f;
-    rodaNetuno += 3.1f;
+    rodaSaturno += 5.2f;
+    rodaNetuno += 3.6f;
     glutPostRedisplay();
 }
-void rotacionaEsfera() {
-    anguloMarte += .1f;
-    anguloSol += .1f;
-    anguloJupiter += .1f;
-    anguloMercurio += .1f;
-    anguloVenus += .1f;
+void transladaEsfera() {
+    anguloMarte += .08f;
+    anguloJupiter += .043f;
+    anguloMercurio += .16f;
+    anguloVenus += .12f;
     anguloTerra += .1f;
-    anguloUrano += .1f;
-    anguloPlutao += .1f;
-    anguloSaturno += .1f;
-    anguloNetuno += .1f;
-    rotaciona();
+    anguloUrano += .022f;
+    anguloPlutao += .015f;
+    anguloSaturno += .031f;
+    anguloNetuno += .018f;
+    rotacionaEsfera();
     glutPostRedisplay();
 }
 void inicializa(){
@@ -166,11 +165,13 @@ void inicializa(){
 
 //função que desenhará tudo o que aparece na tela
 void desenhaCena() {
-    
-    luzes();
+   
    // informacoesTela();
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+    
     glLoadIdentity();
+    
     posicaoCamera();
 
  // Define (atualiza) o valor do expoente de especularidade
@@ -178,12 +179,14 @@ void desenhaCena() {
     glMaterialfv(GL_FRONT, GL_SHININESS, matShine);
     glColor3f(1, 1, 1);
     
+    luzes();
    /* glMaterialfv(GL_FRONT, GL_DIFFUSE, matShine);
     glTranslatef(-2, 10, 0);
     solidSphere(1, 100, 20);
     */
     geraMundos();
     geraOrbita();
+   
     glutSwapBuffers();
 }
 
@@ -198,7 +201,7 @@ int main(int argc, char *argv[]) {
     glutInitWindowPosition (0, 0);
 
     glutCreateWindow("Sistema Solar");
-    // glutEnterGameMode();                 // fullscreen baby! 
+    glutEnterGameMode();                 // fullscreen baby! 
     // glutSetCursor(GLUT_CURSOR_NONE);     // esconde o cursor do sistema
 
     glutDisplayFunc(desenhaCena);
@@ -211,7 +214,7 @@ int main(int argc, char *argv[]) {
     glutPassiveMotionFunc(posicionaCamera);
     
 //    glutIdleFunc(rotaciona);
-    glutIdleFunc(rotacionaEsfera);
+    glutIdleFunc(transladaEsfera);
     inicializa();
     glutMainLoop();
 
