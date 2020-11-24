@@ -1,5 +1,5 @@
 all:
-	g++ sistema.cpp -lGL -lglut -lGLEW -lGLU -lSOIL -lm -lSDL -lSDL_mixer
+	g++ sistema.cpp -o sistema -lGL -lglut -lGLEW -lGLU -lSOIL -lm -lSDL -lSDL_mixer
 
 install-libraries:
 	sudo apt-get update
