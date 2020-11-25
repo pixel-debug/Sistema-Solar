@@ -185,7 +185,7 @@ void geraMundos(){
         glRotatef(anguloTerra, 0, 1, 0); // gira ao redor do sol
         glTranslatef(250, 0, 0);
         glRotatef(rodaTerra, 0, 1, 0);       // gira ao redor dela mesmo
-        glRotatef(133.5, 1, 0, 0);              // angulação do eixo
+        glRotatef(-133.5, 1, 0, 0);              // angulação do eixo
         solidSphere(1.0*tamanhoVisivel, terraLados, terraLados);
         
     glPopMatrix();
