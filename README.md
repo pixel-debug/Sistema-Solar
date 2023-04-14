@@ -1,16 +1,12 @@
-# Sistema Solar
-Trabalho realizado durante a disciplina de Computação Gráfica do CEFET-MG.
+Sistema Solar
+======
 
-*Docente: Glender Brás
- 
-*Discentes: Diego Simoẽs Maria, Ítalo Gustavo Donato Cordeiro e Marina Bernardes Diniz
- 
-*****************************************************
-Projeto escrito em linguagem C++ utilizando bibliotecas como: freeGLUT, SOIL, SDL e OpenGL.
+Trabalho realizado durante a disciplina de Computação Gráfica do CEFET-MG. Escrito em linguagem `C++` utilizando bibliotecas como: `freeGLUT`, `SOIL`, `SDL_mixer` e `OpenGL`.
 
-*****************************************************
+
+
 Compilação do programa:
-
+------
 1- Compilação sem MakeFile 
 ```
     g++ sistema.cpp -lGL -lglut -lGLEW -lGLU -lSOIL -lm -lSDL -lSDL_mixer
@@ -24,9 +20,8 @@ Compilação do programa:
 ```
 
 
-
-*****************************************************
 Lista de itens presentes no jogo
+------
 
 1- Mundo - '9' planetas e Sol criados a partir de texturas e sólidos esféricos
 
@@ -51,3 +46,9 @@ Lista de itens presentes no jogo
 10- Fidedignidade - apertando a tecla 'T'
 
 11- Escrita na tela em ambas as cameras
+
+Involvidos
+------
+- Docente: Glender Brás
+
+- Discentes: Diego Simoẽs Maria, Ítalo Gustavo Donato Cordeiro e Marina Bernardes Diniz
