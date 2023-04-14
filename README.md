@@ -7,13 +7,13 @@ Trabalho realizado durante a disciplina de Computação Gráfica do CEFET-MG. Es
 
 Compilação do programa:
 ------
-1- Compilação sem MakeFile 
+1 - Compilação sem MakeFile 
 ```
     g++ sistema.cpp -lGL -lglut -lGLEW -lGLU -lSOIL -lm -lSDL -lSDL_mixer
     ./a.out
 ```
 
-1- Compilação com MakeFile
+2 - Compilação com MakeFile
 ```
     g++ sistema.cpp -o sistema -lGL -lglut -lGLEW -lGLU -lSOIL -lm -lSDL -lSDL_mixer
     make
