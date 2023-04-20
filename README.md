@@ -47,7 +47,7 @@ Lista de itens presentes no jogo
 
 11- Escrita na tela em ambas as cameras
 
-Involvidos
+Envolvidos
 ------
 - Docente: Glender Brás
 
